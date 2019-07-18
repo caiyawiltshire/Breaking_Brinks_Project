@@ -16,6 +16,10 @@ ball_y = 100
 y_speed = 5
 x_speed = 5
 
+ball_red = 0
+ball_green = 0
+ball_blue = 0
+
 block1 = True
 block2 = True
 block3 = True
@@ -50,23 +54,25 @@ def draw():
     global block5
     global block5_x 
     global block5_y
+    global ball_red
+    global ball_green 
+    global ball_blue 
     background (255,255,255)
 
+    fill(ball_red,ball_green, ball_blue)
     ellipse (ball_x,ball_y,20,20)
     fill (255, 251, 133) #bottom block
     rect (mouseX,mBlock_y,rect_width,rect_height)
     ball_x = ball_x + x_speed
     ball_y = ball_y + y_speed
     
+    #Ball hits moving block
     if  ball_x <= mouseX + 100 and ball_x >= mouseX and ball_y >= mBlock_y and ball_y <= mBlock_y + rect_height: 
         y_speed = -y_speed
-        fill(random(255),random(255), random(255))
-
-    else:
-        fill(255, 251, 133)
-        fill(random(255),random(255), random(255))
+        ball_red = random(0,255)
+        ball_green = random(0,255)
+        ball_blue = random(0,255)
     
-        # ellipse (ball_x,ball_y,20,20)
     if  ball_x >= 595:
         x_speed = -x_speed
     if  ball_x <= 5:
